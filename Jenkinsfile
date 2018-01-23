@@ -2,12 +2,27 @@ pipeline {
   agent none
   stages {
     stage('Shell') {
+      parallel {
+        stage('Shell') {
+          steps {
+            sh 'echo "F5 url added"'
+          }
+        }
+        stage('else') {
+          steps {
+            echo 'Fail to add'
+          }
+        }
+      }
+    }
+    stage('Print') {
       steps {
-        echo 'F5 Pool'
+        echo 'F5 added'
       }
     }
   }
   environment {
-    Name = 'ranveer'
+    Name = ''
+    F5 = ''
   }
 }
